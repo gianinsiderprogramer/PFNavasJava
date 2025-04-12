@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.model;
 
 import jakarta.persistence.*;
 
@@ -24,4 +24,7 @@ public abstract class Cliente {
     public void setNombre(String nombre) { this.nombre = nombre; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

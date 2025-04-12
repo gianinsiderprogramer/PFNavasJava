@@ -1,8 +1,10 @@
-package com.example.demo;
+package com.example.demo.service;
 
-import com.example.demo.ComprobanteRequest.ClienteDTO;
-import com.example.demo.ComprobanteRequest.LineaDTO;
-import com.example.demo.ComprobanteRequest.ProductoDTO;
+import com.example.demo.dto.ComprobanteRequest;
+import com.example.demo.dto.ComprobanteRequest.ClienteDTO;
+import com.example.demo.dto.ComprobanteRequest.LineaDTO;
+import com.example.demo.dto.ComprobanteRequest.ProductoDTO;
+import com.example.demo.model.*;
 import com.example.demo.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,16 +90,16 @@ public class ComprobanteService {
         try {
             RestTemplate restTemplate = new RestTemplate();
             String response = restTemplate.getForObject("http://worldclockapi.com/api/json/utc/now", String.class);
-    
+
             ObjectMapper mapper = new ObjectMapper();
             JsonNode jsonNode = mapper.readTree(response);
             String currentDateTime = jsonNode.get("currentDateTime").asText();
-    
+
             OffsetDateTime odt = OffsetDateTime.parse(currentDateTime);
             return Date.from(odt.toInstant());
-    
+
         } catch (Exception e) {
             return new Date();
         }
     }
-}    
+}
